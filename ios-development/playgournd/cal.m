@@ -7,7 +7,7 @@ bool validateYear(char* cyear){
     if(year >= 1 && year <= 9999){
         return true;
     }else{
-        NSLog(@"cal: year `%s` not in range 1..9999", cyear);
+        printf("cal: year `%s` not in range 1..9999", cyear);
         return false;
     }
 }
@@ -17,9 +17,21 @@ bool validateMonth(char* cmonth){
     if(month >= 1 && month <= 12){
         return true;
     }else{
-        NSLog(@"cal: %s is not a month number (1..12)", cmonth);
+        printf("cal: %s is not a month number (1..12)", cmonth);
         return false;
     }
+}
+
+int getCurrentDay(){
+    //获得当前日期
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps;
+    
+    //获取本日
+    comps = [calendar components:(NSCalendarUnitDay) fromDate:date];
+    NSInteger day = [comps day];
+    return day;
 }
 
 int getCurrentYear(){
@@ -83,7 +95,12 @@ void print(NSString *s){
     printf("%s",c);
 }
 
+// todo: 部分年份的月历显示有误，需要排查原因
 void printCal(int month, int year){
+    int curDay = getCurrentDay();
+    int curMonth = getCurrentMonth();
+    int curYear = getCurrentYear();
+
     NSArray *MONTH_MAP = @[@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月", @"八月", @"九月",@"十月", @"十一月",@"十二月"];
 
     print([NSString stringWithFormat:@"      %@ %d\n", MONTH_MAP[month-1], year]);
@@ -95,19 +112,25 @@ void printCal(int month, int year){
     }
     int lastDay = getMonthLastDay(month, year);
     for(int j = 1; j <= lastDay; j++){
-        printf("%2d", j);
-        if((j+firstDayWeekday-1)%7 == 0){
+        if(j == curDay && month == curMonth && year == curYear){
+            printf("\033[0m\033[47;30m%2d\033[0m", j);
+        }else{
+            printf("%2d", j);
+        }
+
+        if((j+firstDayWeekday-1)%7 == 0 && j!=lastDay){
             printf("\n");
         }else {
             printf(" ");
         }
     }
+    //todo: 最多六行，需要改进
     printf("\n\n");
 }
 
 void printYearCal(int year){
     
-    NSLog(@"printYearCal: %d", year);
+    printf("printYearCal: %d", year);
 }
 
 int main(int argc, char* argv[]){
@@ -142,7 +165,7 @@ int main(int argc, char* argv[]){
                         }
                     }else{
                         // validate: <option>
-                        NSLog(@"cal: illegal option");
+                        printf("cal: illegal option");
                         return 1;
                     }
                 }else{
