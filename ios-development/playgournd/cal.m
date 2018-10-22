@@ -1,6 +1,11 @@
 #import <Foundation/Foundation.h>
 #import <stdio.h>
 
+// todo: 精简代码
+char* NSStringToChar(NSString *s){
+    char* c = [s UTF8String];
+    return c;
+}
 
 bool validateYear(char* cyear){
     int year = [[NSString stringWithUTF8String:cyear] intValue];
@@ -69,7 +74,6 @@ int getMonthFisrtDaysWeekday(int month, int year){
     NSString *firstDay = [NSString stringWithFormat:@"%d/%d/%d",month,1,year];
     date = [formatter dateFromString:firstDay];
     [formatter release];
-    // 注意：星期日是1，星期一是2，以此类推
     comps = [calendar components:(NSCalendarUnitWeekday) fromDate:date];
     NSInteger weekday = [comps weekday];
     return weekday;
@@ -85,52 +89,75 @@ int getMonthLastDay(int month, int year){
     [formatter setDateFormat:@"M/d/yyyy"];
     NSString *firstDay = [NSString stringWithFormat:@"%d/%d/%d",month,1,year];
     date = [formatter dateFromString:firstDay];
-    // 调用rangeOfUnit方法:(返回一样是一个结构体)两个参数一个大单位，一个小单位(.length就是天数，.location就是月)
     NSInteger monthNum = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
     return monthNum;
 }
 
-void print(NSString *s){
-    const char *c = [s UTF8String];
-    printf("%s",c);
+void printMonthLine(int month, int year, int line){
+    if(line == 0){
+        printf("日 一 二 三 四 五 六");
+        return;
+    }
+
+    int firstDayWeekday = getMonthFisrtDaysWeekday(month, year);
+    int lastDay = getMonthLastDay(month, year);
+    int curDay = getCurrentDay();
+    int curMonth = getCurrentMonth();
+    int curYear = getCurrentYear();
+    
+    int day = 7*(line-1) - firstDayWeekday + 2;
+    int stop = day+7;
+    
+    while(1){
+        if(day <= 0 || day>lastDay){
+            printf("  ");
+        }else{
+            if(day == curDay && month == curMonth && year == curYear){
+                printf("\033[0m\033[47;30m%2d\033[0m", day);
+            }else{
+                printf("%2d", day);
+            }
+        }
+        day++;
+        if(day < stop){
+            printf(" ");
+        }else{
+            break;
+        }
+    }
 }
 
 // todo: 部分年份的月历显示有误，需要排查原因
 void printCal(int month, int year){
-    int curDay = getCurrentDay();
-    int curMonth = getCurrentMonth();
-    int curYear = getCurrentYear();
-
     NSArray *MONTH_MAP = @[@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月", @"八月", @"九月",@"十月", @"十一月",@"十二月"];
-
-    print([NSString stringWithFormat:@"      %@ %d\n", MONTH_MAP[month-1], year]);
-    printf("日 一 二 三 四 五 六\n");
-    int firstDayWeekday = getMonthFisrtDaysWeekday(month, year);
-    for(int i = 1; i < firstDayWeekday; i++){
-        // 前导空格
-        printf("   ");
+    printf("      %s %d\n", NSStringToChar(MONTH_MAP[month-1]), year);
+    
+    for(int i = 0;i<7;i++){
+        printMonthLine(month, year, i);
+        printf("\n");
     }
-    int lastDay = getMonthLastDay(month, year);
-    for(int j = 1; j <= lastDay; j++){
-        if(j == curDay && month == curMonth && year == curYear){
-            printf("\033[0m\033[47;30m%2d\033[0m", j);
-        }else{
-            printf("%2d", j);
-        }
-
-        if((j+firstDayWeekday-1)%7 == 0 && j!=lastDay){
-            printf("\n");
-        }else {
-            printf(" ");
-        }
-    }
-    //todo: 最多六行，需要改进
-    printf("\n\n");
 }
 
 void printYearCal(int year){
-    
-    printf("printYearCal: %d", year);
+    NSArray *MONTH_MAP = @[@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月", @"八月", @"九月",@"十月", @"十一月",@"十二月"];
+    printf("                            %d\n",year);
+
+    for(int m = 3; m<=12; m+=3){
+        for(int line = -1; line < 7; line++){
+            for(int month = m-2; month<=m; month++){
+                if(line == -1){
+                    printf("%17s        ", NSStringToChar(MONTH_MAP[month-1]));
+                }else{
+                    printMonthLine(month ,year, line);
+                    printf("  ");
+                }
+            }
+            printf("\n");
+        }
+        if(m!=12){
+            printf("\n");
+        }
+    }
 }
 
 int main(int argc, char* argv[]){
