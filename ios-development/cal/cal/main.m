@@ -10,7 +10,6 @@
 #import "Date.h"
 #import "Cal.h"
 
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         @autoreleasepool {
@@ -26,12 +25,21 @@ int main(int argc, const char * argv[]) {
                     [cal printCal:month andYear:year];
                     break;
                 case 2:
-                    // usecase:4 输入：<year> 输出：当年年历
-                    // validate: <year>
-                    if([cal validateYear:argv[1]]){
-                        year = [[NSString stringWithUTF8String:argv[1]] intValue];
-                        [cal printYearCal:year];
+                    if(argv[1][0] == '-'){
+                        if([@"-m" compare: [NSString stringWithUTF8String:argv[1]]] == NSOrderedSame){
+                            printf("cal: option requires an argument -- m\n");
+                        }else{
+                            printf("cal: illegal option\n");
+                        }
                         return 1;
+                    }else{
+                        // usecase:4 输入：<year> 输出：当年年历
+                        // validate: <year>
+                        if([cal validateYear:argv[1]]){
+                            year = [[NSString stringWithUTF8String:argv[1]] intValue];
+                            [cal printYearCal:year];
+                            return 1;
+                        }
                     }
                     break;
                 case 3:
@@ -46,7 +54,7 @@ int main(int argc, const char * argv[]) {
                             }
                         }else{
                             // validate: <option>
-                            printf("cal: illegal option");
+                            printf("cal: illegal option\n");
                             return 1;
                         }
                     }else{
