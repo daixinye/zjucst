@@ -18,36 +18,18 @@
 }
 
 - (NSInteger) getCurrentDay{
-    //获得当前日期
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps;
-    
-    //获取本日
     comps = [calendar components:(NSCalendarUnitDay) fromDate:date];
     NSInteger day = [comps day];
     return day;
 }
 
 - (NSInteger) getCurrentYear{
-    //获得当前日期
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps;
-    
-    //获取本年
     comps = [calendar components:(NSCalendarUnitYear) fromDate:date];
     NSInteger year = [comps year];
     return year;
 }
 
 - (NSInteger) getCurrentMonth{
-    //获得当前日期
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps;
-    
-    //获取本月
     comps = [calendar components:(NSCalendarUnitMonth) fromDate:date];
     NSInteger month = [comps month];
     return month;
@@ -59,8 +41,8 @@
     [formatter setTimeZone:timeZone];
     [formatter setDateFormat:@"M/d/yyyy"];
     NSString *firstDay = [NSString stringWithFormat:@"%ld/%d/%ld",month,1,year];
-    NSDate *date = [formatter dateFromString:firstDay];
-    comps = [calendar components:(NSCalendarUnitWeekday) fromDate:date];
+    NSDate *firstDayDate = [formatter dateFromString:firstDay];
+    comps = [calendar components:(NSCalendarUnitWeekday) fromDate:firstDayDate];
     NSInteger weekday = [comps weekday];
     return weekday;
 }
@@ -71,8 +53,8 @@
     [formatter setTimeZone:timeZone];
     [formatter setDateFormat:@"M/d/yyyy"];
     NSString *firstDay = [NSString stringWithFormat:@"%ld/%d/%ld",month,1,year];
-    NSDate *date = [formatter dateFromString:firstDay];
-    NSInteger monthNum = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date].length;
+    NSDate *firstDayDate = [formatter dateFromString:firstDay];
+    NSInteger monthNum = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:firstDayDate].length;
     return monthNum;
 }
 @end

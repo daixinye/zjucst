@@ -10,9 +10,8 @@
 #import "Date.h"
 #import "Cal.h"
 
-char* NSStringToChar(NSString *s){
-    char* c = [s UTF8String];
-    return c;
+const char* NSStringToChar(NSString *s){
+    return [s UTF8String];
 }
 
 @implementation Cal
