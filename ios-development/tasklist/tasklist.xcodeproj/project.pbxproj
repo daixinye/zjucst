@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812D8F3B2189D0B100F87676 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 812D8F3A2189D0B100F87676 /* Store.m */; };
 		813E15A9218562DF00018FBC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E15A8218562DF00018FBC /* AppDelegate.m */; };
 		813E15AC218562DF00018FBC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 813E15AB218562DF00018FBC /* ViewController.m */; };
 		813E15AF218562DF00018FBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813E15AD218562DF00018FBC /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		812D8F392189D09F00F87676 /* Store.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		812D8F3A2189D0B100F87676 /* Store.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		813E15A4218562DF00018FBC /* tasklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		813E15A7218562DF00018FBC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		813E15A8218562DF00018FBC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				813E15B2218562E000018FBC /* LaunchScreen.storyboard */,
 				813E15B5218562E000018FBC /* Info.plist */,
 				813E15B6218562E000018FBC /* main.m */,
+				812D8F392189D09F00F87676 /* Store.h */,
+				812D8F3A2189D0B100F87676 /* Store.m */,
 			);
 			path = tasklist;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				813E15AC218562DF00018FBC /* ViewController.m in Sources */,
 				813E15B7218562E000018FBC /* main.m in Sources */,
 				813E15A9218562DF00018FBC /* AppDelegate.m in Sources */,
+				812D8F3B2189D0B100F87676 /* Store.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

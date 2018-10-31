@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Store.h"
 
 @interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray  *taskList;
+    Store *store;
 }
 @end
 

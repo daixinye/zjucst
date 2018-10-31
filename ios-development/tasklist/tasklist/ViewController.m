@@ -7,12 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "Store.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *TaskInputTextField;
 @property (weak, nonatomic) IBOutlet UIButton *InsertButton;
 @property (weak, nonatomic) IBOutlet UITableView *TaskListTableView;
 - (IBAction)onInsert:(id)sender;
+- (void)saveData;
+- (void)readData;
 
 @end
 
@@ -21,14 +24,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    taskList = [[NSMutableArray alloc] init];
     
+    // 读取数据
+    [self readData];
+    
+    // 监听 App 进入后台事件
+    SEL save = NSSelectorFromString(@"saveData");
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:save name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
+-(void)readData{
+    // 从 plist 中读取数据并更新到 taskList 变量中
+    NSLog(@"读取数据");
+    store = [[Store alloc] initWithName:@"user"];
+    taskList = [store readPlist];
+}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)saveData{
+    // 将 taskList 变量中的数据写回 plist
+    NSLog(@"保存数据");
+    [store savePlist:taskList];
 }
 
 #pragma mark - Table View Data source
@@ -36,6 +51,7 @@
     NSString *text = [self.TaskInputTextField.text copy];
     if([text length]>0){
         [taskList addObject:text];
+        // 更新 tableview
         [self.TaskListTableView reloadData];
         self.TaskInputTextField.text = @"";
     }
@@ -46,7 +62,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"cellID";
+    static NSString *cellIdentifier = @"task";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              cellIdentifier];
@@ -57,12 +73,8 @@
     NSString *stringForCell;
     if (indexPath.section == 0) {
         stringForCell= [taskList objectAtIndex:indexPath.row];
-        
     }
-    else if (indexPath.section == 1){
-        stringForCell= [taskList objectAtIndex:indexPath.row+ [taskList count]];
-        
-    }
+    
     [cell.textLabel setText:stringForCell];
     return cell;
 }
