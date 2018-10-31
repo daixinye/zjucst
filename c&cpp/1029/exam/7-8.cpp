@@ -3,75 +3,48 @@
 #include <set>
 using namespace std;
 
-set<string> USED;
-vector< vector<char> > NET;
-
-void display(vector< vector<char> > net)
-{
-    for (int i = 0; i < net.size(); i++)
+bool check(vector<vector<char> > &net, string word, vector<vector<bool> > visited, int i, int j, int index)
     {
-        for (int j = 0; j < net[i].size(); j++)
-        {
-            cout << net[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
-bool isUsed(int x, int y)
-{
-    string find = to_string(x) + to_string(y);
-    set<string>::iterator it;
-    it = USED.find(find);
-    return it != USED.end();
-}
-
-void setUsed(int x, int y)
-{
-    USED.insert(to_string(x) + to_string(y));
-}
-
-bool validXY(int x, int y)
-{
-    return x >= 0 && y >= 0 && y < NET.size() && x < NET[0].size();
-}
-
-bool check(string target, int i, int x, int y, int from_x, int from_y)
-{
-    if (isUsed(x, y))
-    {
-        return false;
-    }
-    
-    char c = target[i];
-    if (validXY(x,y) && c == NET[y][x])
-    {
-        if (i == target.length()-1)
+        if (index == word.length())
         {
             return true;
         }
-        setUsed(x, y);
-        // 检查 上 (x, y+1)
-        bool up = validXY(x, y + 1) && check(target, i + 1, x, y + 1, x, y);
-        // 检查 下 (x, y-1)
-        bool down = validXY(x, y - 1) && check(target, i + 1, x, y - 1, x, y);
-        // 检查 左 (x, y-1)
-        bool left = validXY(x - 1, y) && check(target, i + 1, x - 1, y, x, y);
-        // 检查 右 (x+1, y)
-        bool right = validXY(x + 1, y) && check(target, i + 1, x + 1, y, x, y);
 
-        return up || down || left || right;
+        if (i < 0 || j < 0 || j >= net.size() || i >= net[0].size())
+        {
+            return false;
+        }
+
+        if (visited[j][i])
+        {
+            return false;
+        }
+
+        if (word[index] != net[j][i])
+        {
+            return false;
+        }
+
+        visited[j][i] = true;
+
+        bool result = check(net, word, visited, i - 1, j, index + 1) ||
+                      check(net, word, visited, i + 1, j, index + 1) ||
+                      check(net, word, visited, i, j - 1, index + 1) ||
+                      check(net, word, visited, i, j + 1, index + 1);
+
+        visited[j][i] = false;
+
+        return result;
     }
-
-    return false;
-}
 
 int main()
 {
+    vector<vector<char> > net;
+
     int m, n;
     cin >> n >> m;
 
-    for (int i = 1; i < m; i++)
+    for (int i = 0; i < m; i++)
     {
         vector<char> row;
         char temp;
@@ -80,24 +53,24 @@ int main()
             cin >> temp;
             row.push_back(temp);
         }
-        NET.push_back(row);
+        net.push_back(row);
     }
 
-    string target;
-    cin >> target;
+    vector<vector<bool> > visited(net.size(), vector<bool>(net[0].size()));
+    string word;
+    cin >> word;
 
-    for (int y = 0; y < m; y++)
+    for (int y = 0; y < net.size(); y++)
     {
-        for (int x = 0; x < n; x++)
+        for (int x = 0; x < net[0].size(); x++)
         {
-            USED.clear();
-            if (check(target, 0, x, y, x, y))
+            if (check(net, word, visited, x, y, 0))
             {
                 cout << "Exist" << endl;
                 return 0;
             }
         }
     }
-    cout << "Not Exist" << endl;
+    cout << "Not exist" << endl;
     return 0;
 }
