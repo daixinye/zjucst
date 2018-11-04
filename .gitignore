@@ -1,2 +1,5 @@
 test
 .vscode
+
+big-data/**/mapper
+big-data/**/reducer
