@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <map>
+#include <vector>
 using namespace std;
 
 int main()
@@ -11,9 +12,17 @@ int main()
     map<string, int> count_map;
     while (getline(cin, line))
     {
-        string ts, uid, keyword, rank, ord, url, year, month, day, hour;
+        string url;
+        string temp;
+        vector<string> in;
         istringstream iss(line);
-        iss >> ts >> uid >> keyword >> rank >> ord >> url >> year >> month >> day >> hour;
+
+        while (getline(iss, temp, '\t'))
+        {
+            in.push_back(temp);
+        }
+
+        url = in[5];
 
         if (count_map.find(url) != count_map.end())
         {
