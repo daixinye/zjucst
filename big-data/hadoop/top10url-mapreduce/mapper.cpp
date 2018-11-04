@@ -28,7 +28,11 @@ int main()
     map<string, int>::iterator it = count_map.begin();
     while (it != count_map.end())
     {
-        cout<<it->first<<"\t"<<it->second<<endl;
+        // 过滤小于10次的
+        if (it->second > 10)
+        {
+            cout << it->first << "\t" << it->second << endl;
+        }
         it++;
     }
     return 0;
