@@ -1,5 +1,7 @@
 #include <iostream>
 #include <map>
+#include <vector>
+#include <sstream>
 using namespace std;
 
 int main()
@@ -7,16 +9,30 @@ int main()
     string key;
     int value;
     map<string, int> count;
+    string line;
 
-    while (cin >> key >> value)
+    while (getline(cin, line))
     {
-        if (count.find(key) != count.end())
+        string keyword;
+        string temp;
+        vector<string> in;
+        istringstream iss(line);
+
+        while (getline(iss, temp, '\t'))
         {
-            count[key] = count[key] + value;
+            in.push_back(temp);
+        }
+
+        keyword = in[0];
+        value = stoi(in[1]);
+
+        if (count.find(keyword) != count.end())
+        {
+            count[keyword] = count[keyword] + value;
         }
         else
         {
-            count[key] = value;
+            count[keyword] = value;
         }
     }
 
