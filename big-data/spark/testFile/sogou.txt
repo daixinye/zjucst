@@ -1,0 +1,100 @@
+20111230000005	57375476989eea12893c0c3811607bcf	奇艺高清	1	1	http://www.qiyi.com/
+20111230000005	66c5bb7774e31d0a22278249b26bc83a	凡人修仙传	3	1	http://www.booksky.org/BookDetail.aspx?BookID=1050804&Level=1
+20111230000007	b97920521c78de70ac38e3713f524b50	本本联盟	1	1	http://www.bblianmeng.com/
+20111230000008	6961d0c97fe93701fc9c0d861d096cd9	华南师范大学图书馆	1	1	http://lib.scnu.edu.cn/
+20111230000008	f2f5a21c764aebde1e8afcc2871e086f	在线代理	2	1	http://proxyie.cn/
+20111230000009	96994a0480e7e1edcaef67b20d8816b7	伟大导演	1	1	http://movie.douban.com/review/1128960/
+20111230000009	698956eb07815439fe5f46e9a4503997	youku	1	1	http://www.youku.com/
+20111230000009	599cd26984f72ee68b2b6ebefccf6aed	安徽合肥365房产网	1	1	http://hf.house365.com/
+20111230000010	f577230df7b6c532837cd16ab731f874	哈萨克网址大全	1	1	http://www.kz321.com/
+20111230000010	285f88780dd0659f5fc8acc7cc4949f2	IQ数码	1	1	http://www.iqshuma.com/
+20111230000010	f4ba3f337efb1cc469fcd0b34feff9fb	推荐待机时间长的手机	1	1	http://mobile.zol.com.cn/148/1487938.html
+20111230000010	3d1acc7235374d531de1ca885df5e711	满江红	1	1	http://baike.baidu.com/view/6500.htm
+20111230000010	dbce4101683913365648eba6a85b6273	光标下载	1	1	http://zhidao.baidu.com/question/38626533
+20111230000011	58e7d0caec23bcb4daa7bbcc4d37f008	张国立的电视剧	2	1	http://tv.sogou.com/vertical/2xc3t6wbuk24jnphzlj35zy.html?p=40230600
+20111230000011	a3b83dc38b2bbc35660dffcab4ed9da8	吹暖花开性吧	1	1	http://www.7183.info/
+20111230000011	b89952902d7821db37e8999776b32427	怎么骂一个人不带脏字	1	1	http://wenwen.soso.com/z/q131927207.htm
+20111230000011	7c54c43f3a8a0af0951c26d94a57d6c8	百度一下 你就知道	1	1	http://www.baidu.com/
+20111230000011	2d6c22c084a501c0b8f7f0a845aefd9f	快播爽吧	5	1	http://www.dy241.com/
+20111230000011	11097724dae8b9fdcc60bd6fa4ce4df2	118图库	2	1	http://118123.net/
+20111230000012	1d374b57fbbc81aa0cc38e6f4efb88ec	qq老头像	1	1	http://tui.qihoo.com/28302631/article_2893190.html
+20111230000012	76029a8965e815b413cba0b50d2ec2b0	聂磊	1	1	http://baike.baidu.com/view/1941330.htm
+20111230000013	22201bdc15845bfb33384efc3a283ef4	cf官网	1	1	http://cf.qq.com/
+20111230000013	e0d255845fc9e66b2a25c43a70de4a9a	无饶河，益慎职 意思	3	1	http://hanyu.iciba.com/wiki/1230433.shtml
+20111230000013	b89952902d7821db37e8999776b32427	怎么骂一个人不带脏字	2	2	http://zhidao.baidu.com/question/224925866
+20111230000013	072fa3643c91b29bd586aff29b402161	暴力破解无线网络密码	2	1	http://download.csdn.net/detail/think1919/3935722
+20111230000014	f31f594bd1f3147298bd952ba35de84d	12306.cn	1	1	http://www.12306.cn/
+20111230000014	26d2e31d48f527e34c082bc0de591e0e	傲视千雄	1	1	http://web.4399.com/asqx/
+20111230000015	66c5bb7774e31d0a22278249b26bc83a	大唐小郎中	3	1	http://www.booksky.org/BookDetail.aspx?BookID=1067515
+20111230000016	f1b7efe9428b9074f79d3e91ecc6385e	海口双岛幼儿园	3	1	http://www.xugu.net/school/top.asp?id=71407
+20111230000016	16c3b69cc93e838f89895b49643cef1d	王小丫	6	1	http://www.94caobi.com/html/21541.html
+20111230000016	7b1764147dd77a3189108874d1cf5eb3	连连看	2	1	http://www.4399.com/flash/776.htm
+20111230000016	112324d2e8fa2449a9ba309b18397cd4	如图所示，水平传送带水平段长L=3m，两皮带轮半径均为r= 5cm，近地面高度h=3.2m,此时传送带静止。与传送带等高	1	1	http://beike.dangzhi.com/view/69g291
+20111230000017	e767b76990f9232e525d5014d802fd29	中国移动网上营业厅	1	1	http://10086.cn/service/
+20111230000017	2ebbc38bf56753b09c945de813a443c3	人在囧途	2	1	http://tv.sogou.com/movie/wxt5hmbazdf5jwuh4xg34.html?p=40230600
+20111230000018	314b319b7f2826e34662c2a831e3af78	梦幻打造熟练度	1	1	http://zhidao.baidu.com/question/7102977
+20111230000018	80b1cc3a3056b301bf297abb60fa1396	唐宫美人天下全集	1	1	http://tv.sogou.com/series/wxt4vu5644qmhqgizpgozt6c.html?p=40230600
+20111230000018	3d1acc7235374d531de1ca885df5e711	满江红	2	2	http://zhidao.baidu.com/question/330668528
+20111230000018	596444b8c02b7b30c11273d5bbb88741	pissing  videos	1	1	http://lakery.com/8y18-girl-pissing-in-mouth?nearest
+20111230000019	11e2e89dbf484ed187e73cbeaf1e0084	www.june9.info@16	1	1	http://r.baidu.com/1QCa0
+20111230000019	63fd6f826a5f83d795f08778468d0e14	yunvxinjin	4	1	http://www.zvod.net/zvoddianying/14028.html
+20111230000020	637b29b47fed3853e117aa7009a4b621	fdf	1	1	http://www.163pan.com/files/70z00000j.html
+20111230000020	6fd2e9ca4bb0f7c2a9a99c51503e6228	什么是高血压	2	1	http://club.xywy.com/htm/937/468046.htm
+20111230000020	e7579c6b6b9c0ea40ecfa0f425fc765a	剑圣出装lol	2	1	http://zhidao.baidu.com/question/328972379
+20111230000021	b96e5326d7a3ca68b446947519961729	医院领导龙年新年贺词	10	1	http://www.lwlm.com/YuanDanJie/201112/625184.htm
+20111230000021	06fc4355fe4486bfe63db65702a03c22	直播吧	1	1	http://www.zhibo8.com/
+20111230000022	6918784a2ef25f43dd7a4f2a74a51dec	反恐精英	1	1	http://csol.tiancity.com/
+20111230000023	32ce11fbe72d8db1c33e30ecc37d3cc7	倾城之泪	3	1	http://baike.baidu.com/view/6045062.htm
+20111230000023	e552abaeb18bd17ef44466b92b19e4d4	女人阴帝 图	1	1	http://www.00bo.com/html/xingxuemeitu/shenglitupian/2010/0602/3622.html
+20111230000023	2cb4b42dea429b03295b8920684d03cf	吾爱	2	1	http://www.5220.net/
+20111230000024	f1b7efe9428b9074f79d3e91ecc6385e	海口双岛幼儿园	9	2	http://2288.ankang06.org/
+20111230000024	d551494dc370a8ae8f566d5ca0aa7442	黄河鬼棺txt全集下载	1	1	http://www.bookdown.com.cn/bookinfo/7462.html
+20111230000024	7d762dee97811e634fd6960578c8e59a	男妓	4	1	http://society.eastday.com/eastday/node79841/node79867/node89310/userobject1ai1494646.html
+20111230000024	2a89132586e2257732cac503269c05df	邪龙逆天	1	1	http://www.ranwen.com/info_34913.html
+20111230000025	976203d90a680bd2b225f6ffe985789d	长安b501报价	2	1	http://price.pcauto.com.cn/serial.jsp?sid=7742
+20111230000025	56eebaf343a3370e285d2c2a7323a620	cf官网	1	1	http://cf.qq.com/
+20111230000025	622417c636f98a1ee2828d7f96bedd97	两杠四星是什么军衔	2	1	http://zhidao.baidu.com/question/231238007
+20111230000026	637b29b47fed3853e117aa7009a4b621	问道鬼宠技能	1	1	http://tieba.baidu.com/f?kz=1095962438
+20111230000026	be0e83bf0d407b52fd4671fea180bf63	开锁工具盗窃	4	1	http://video.sina.com.cn/p/news/s/v/2011-07-25/084561423261.html
+20111230000027	9c89762b968568aaa0bed63579088f8e	stocking videos	3	1	http://www.sexystockingtops.com/updates/update.html
+20111230000027	675328be27a0cd6494aae92cc4017e5b	亡灵 出装	1	1	http://wangyou.pcgames.com.cn/zhuanti/lol/hero/1108/2307300.html
+20111230000027	e16b0a2c59e6029e0552e9890a2ca450	qq非主流情侣分组浪漫	9	1	http://www.whoisqq.com/abc/2972.html
+20111230000027	4a6f0d5cc0bcf16e32e74ae49663b60d	baidu	2	1	http://site.baidu.com/
+20111230000027	89bda490742dcb4230053dfed8325076	新买的羽绒服要洗	5	1	http://zhidao.baidu.com/question/40379708
+20111230000027	3bae2889c9daae4fe47f5ec353d9f46e	柯南国语版全集优酷	2	1	http://www.youku.com/playlist_show/id_2970802.html
+20111230000027	85f4a4d0c13a19dc138e51b80a3631f1	狗狗书籍	1	1	http://book.gougou.com/
+20111230000028	1ea8e187c80881fa76ebbd44062e9d34	vva手表	3	1	http://shop36310022.taobao.com/
+20111230000029	dc5494fa71e44f357b7f13fd5533b493	失恋33天下载	8	1	http://www.7060.com/movie/6887.html
+20111230000029	710dfb2a2015457bf001a6bce8317e9f	豪杰春香下载	4	1	http://www.1776.cn/html/5010/21066.html
+20111230000030	596444b8c02b7b30c11273d5bbb88741	pissing  videos	4	2	http://www.yobt.tv/search/pissing/
+20111230000031	28cd493e78ccc645b3691406b6b9e4ca	张杰	5	1	http://news.xhby.net/system/2011/12/29/012411569.shtml
+20111230000031	f07dcbf667f2ad04b91456da211400c9	qq飞车	1	1	http://speed.qq.com/
+20111230000031	3e5943621a3afa8bb61af81a286962f7	笑傲江湖 吕颂贤版	1	1	http://tv.sogou.com/series/wxt4vu5644qnbjvqyg623ox6ylamxtgpzwyom.html?p=40230600
+20111230000031	db96720253a59e4e789e6271a880b148	三级猛片武则天	3	1	http://www.yiqidy.com/3/index26020.html?26020-0-0
+20111230000031	74033165c877f4082e14c1e94d1efff4	企业专利管理	1	1	http://baike.baidu.com/view/2435879.htm
+20111230000031	26d2e31d48f527e34c082bc0de591e0e	傲视千雄	1	1	http://web.4399.com/asqx/
+20111230000032	a3417ff8b9a685f0eb6f493d5e90e3f3	酷派d539	2	1	http://product.pcpop.com/000307950/Index.html
+20111230000033	fcb8255eab8aa31e57da1d99d39706d8	都市皇宫txt全集下载歪歪	1	1	http://www.web0550.com/Novel.Asp?ID=68&Y=-1
+20111230000033	a92a92e77ee1b46a5da84afb5dca48be	金陵十三钗最新完整版	5	1	http://www.yrftx.com/3403.html
+20111230000033	ddd5275a24e91da6619704644fd297e9	腊梅老桩价格	2	1	http://miaomu.yuanlin365.com/detail83540/
+20111230000033	596444b8c02b7b30c11273d5bbb88741	pissing  videos	5	3	http://www.iwantpissing.com/
+20111230000034	46436df378d05d15c372c59bf7158129	掌机游戏后宫	3	1	http://www.cuiweiju.com/html/109/109570/
+20111230000034	5ea391fd07dbb616e9857a7d95f460e0	美女大全不穿衣17	6	1	http://mt1.mnv20.com/
+20111230000035	ac8299944e636a7c75c94b9266c2a19e	考试大网站	1	1	http://www.233.com/
+20111230000035	da5f182619cf0caffb51ac2cc9d01b7c	qq校友	1	1	http://xiaoyou.qq.com/
+20111230000035	be740beaf7eedd572ad9809782eab873	幼稚英文翻译	5	1	http://www.i21st.cn/translate/165940/
+20111230000035	811830e6450741a86364c72cd426d7b0	超能全才	1	1	http://www.ranwen.com/info_32542.html
+20111230000035	69db43a90798d5c5c5536153e2205cc9	长城哈弗h3	1	1	http://db.auto.sohu.com/model-1279.shtml
+20111230000035	be57bf8dbab56cbd93fdd697aed129be	3d红蓝立体人体艺术	2	1	http://bbs.3ddl.net/thread-105761-1-1.html
+20111230000036	5c59eadc29ac42789b012fd34c6de265	12306.cn	1	1	http://www.12306.cn/
+20111230000036	4e2cc91df58b42282c094d1453aad056	51	2	1	http://www.51.com/
+20111230000037	be8577f72176788b9281295e213a6c97	世界第一初恋小说	3	1	http://www.xstxw.com/s_99/128407/list.html
+20111230000038	1fc3c745b8b4d9dd4e5a4d782d4c2afb	个性网	8	1	http://luxury.qq.com/a/20111227/000007.htm
+20111230000038	af7f3a9951a0b37f01761f9adacbd8ec	乐蜂网怎么样	1	1	http://zhidao.baidu.com/question/306402202
+20111230000039	a06830724b809c0db56263124b2bd142	电脑用HTC手机做猫	4	1	http://www.lexun.cn/showtopic.aspx?topicid=1028356&posterid=19641
+20111230000039	66c5bb7774e31d0a22278249b26bc83a	散仙世界	7	1	http://www.booksky.org/BookDetail.aspx?BookID=1070958
+20111230000040	67855129fbe86cad6c69272f86214e47	个性签名 幸福	1	1	http://www.ksij.cn/
+20111230000040	0875edc8a14a22801bac1ddc01fa18a1	张杰	5	1	http://baike.baidu.com/view/17481.htm
+20111230000040	a25534f965d5fd31daead21c78bf1973	cf官网	1	1	http://cf.qq.com/
+20111230000041	589a702d9ef4e380693815f6f364e905	管理人员安全教育	8	1	http://wenku.baidu.com/view/a48d491efad6195f312ba678.html?from=related&hasrec=1
+20111230000041	5112f2980d741482065c20a58f90be20	二胡独奏彩云追月	8	1	http://www.56.com/u52/v_NTcyNDkxMzI.html
