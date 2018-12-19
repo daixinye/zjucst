@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
+import 'utils/notification.dart';
 
 class ItemAddScreen extends StatelessWidget {
   @override
@@ -24,42 +26,97 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that will uniquely identify the Form widget and allow
-  // us to validate the form
-  //
-  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>!
   final _formKey = GlobalKey<FormState>();
-  String _title = "title";
-  String _description = "description";
+  String _title = "";
+  String _description = "";
+  var _latitude;
+  var _longitude;
+  var _currentLocation = <String, double>{};
+
+  initLocation() async {
+    var location = new Location();
+    var currentLocation = await location.getLocation();
+
+    setState(() {
+      _currentLocation = currentLocation;
+      print(_currentLocation);
+      _latitude = _currentLocation["latitude"];
+      _longitude = _currentLocation["longitude"];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initLocation();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey we created above
     return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          CupertinoTextField(
-            prefix: Text('标题：'),
-            onChanged: (text) {
-              _title = text;
-            },
-          ),
-          CupertinoTextField(
-            prefix: Text('描述：'),
-            onChanged: (text) {
-              _description = text;
-            },
-          ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.all(0.0),
+            child: Column(
+              children: <Widget>[
+                Text('地点名称',textAlign: TextAlign.left,),
+                Divider(height: 10,indent: 2000,),
+                CupertinoTextField(
+                  placeholder: '如寝室、教学楼...',
+                  onChanged: (text) {
+                    _title = text;
+                  },
+                ),
+                Divider(height: 20,indent: 2000,),
+                Text('提醒事项'),
+                Divider(height: 10,indent: 2000,),
+                CupertinoTextField(
+                  placeholder: '如拿钥匙、拿书...',
+                  onChanged: (text) {
+                    _description = text;
+                  },
+                ),
+                Divider(height: 20,indent: 2000,),
+                Text('触发距离'),
+                Divider(height: 10,indent: 2000,),
+                CupertinoTextField(
+                  placeholder: '当在距离该地方多远时进行提醒，如500(m)',
+                  onChanged: (text) {
+                    _description = text;
+                  },
+                ),
+                Divider(height: 50,indent: 2000,),
+                CupertinoTextField(
+                  prefix: Text(' 经度：'),
+                  placeholder: "$_longitude",
+                  onChanged: (text) {
+                    _latitude = text;
+                  },
+                ),
+                CupertinoTextField(
+                  prefix: Text(' 纬度：'),
+                  placeholder: "$_latitude",
+                  onChanged: (text) {
+                    _longitude = text;
+                  },
+                ),
+              ],
+            ),
+          ),
+          Center(
             child: CupertinoButton(
               onPressed: () {
-                Navigator.pop(
-                    context, {"title": _title, "description": _description});
+                Navigator.pop(context, {
+                  "title": _title,
+                  "description": _description,
+                  "latitude": _latitude,
+                  "longitude": _longitude
+                });
               },
-              child: Text('Submit'),
+              child: Text('添加'),
             ),
           ),
         ],
