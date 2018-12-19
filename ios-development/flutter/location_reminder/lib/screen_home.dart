@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'screen_item.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -35,10 +26,25 @@ class _MyHomePageState extends State<MyHomePage> {
         trailing: CupertinoButton(
           padding: EdgeInsets.all(0),
           child: Icon(Icons.add),
-          onPressed: _addReminder,
+          onPressed: () async {
+            final result = await Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => ItemAddScreen()));
+
+            if (result != null) {
+              String title = result["title"];
+              String description = result["description"];
+
+              setState(() {
+                _reminderItems.add(Reminder("$title", "$description"));
+              });
+            }
+          },
         ),
       ),
-      child: _buildReminders(),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(0, 80, 0, 0),
+        child: _buildReminders(),
+      ),
     );
   }
 
@@ -80,21 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         CupertinoSwitch(
-          onChanged: (state){
-            setState((){
-              item.toggle = state;
-            });
-          },
-          value: item.toggle
-        )
+            onChanged: (state) {
+              setState(() {
+                item.toggle = state;
+              });
+            },
+            value: item.toggle)
       ],
     );
-  }
-
-  void _addReminder() {
-    setState(() {
-      _reminderItems.add(Reminder("Test", "test"));
-    });
   }
 }
 
