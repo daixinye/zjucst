@@ -1,16 +1,9 @@
-# location_reminder
+# Location Reminder
 
-A new Flutter project.
+一个基于 Flutter 开发的空间提醒 iOS App。
 
-## Getting Started
+## 功能
 
-This project is a starting point for a Flutter application.
+添加空间提醒，可设置「地点」与「提醒事项」，当用户与地点小于预设的「提醒距离」时，发出通知提醒用户。
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
