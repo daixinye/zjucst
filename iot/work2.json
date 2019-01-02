@@ -1,0 +1,13 @@
+{
+    "properties":{
+        "identifier":"Temp",
+        "accessMode":"r",
+        "dataType":{
+            "type":"float",
+            "specs":{
+                "min":"-40",
+                "max":"50"
+            }
+        }
+    }
+}
