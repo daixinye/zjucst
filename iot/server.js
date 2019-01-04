@@ -5,7 +5,7 @@ const httpServer = http.createServer((req, res) => {
     res.end('hello world')
 })
 
-httpServer.listen(8080)
+httpServer.listen(80)
 
 httpServer.on('connection',socket => {
     socket.on('data', data => {

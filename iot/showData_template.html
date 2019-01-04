@@ -1,0 +1,397 @@
+<style type="text/css">
+  #information {
+    display: none;
+  }
+
+  #mobileModule {
+    display: none;
+  }
+  #projectModule {
+    display: none;
+  }
+  #descriptionModule {
+    display: none;
+  }
+  #authorModule {
+    display: none;
+  }
+  #dataChartModule {
+    display: none;
+  }
+  #dataTextModule {
+    display: none;
+  }
+
+  /*主要用来修改button、text及其他元素样式*/
+</style>
+
+<script
+  language="javascript"
+  type="text/javascript"
+  src="js/jquery.min.js"
+></script>
+<script
+  language="javascript"
+  type="text/javascript"
+  src="js/highcharts.js"
+></script>
+<script
+  language="javascript"
+  type="text/javascript"
+  src="js/exporting.js"
+></script>
+<script src="js/RGraph.common.core.js"></script>
+<script src="js/RGraph.common.effects.js"></script>
+<script src="js/RGraph.common.dynamic.js"></script>
+<script src="js/RGraph.gauge.js"></script>
+<script src="js/excanvas.js"></script>
+<script type="text/javascript">
+  var widthBase = 1840,
+    scale,
+    widthCurrent,
+    gDataDate = 0,
+    gDataDateLast = 0,
+    res = 0;
+  var projectName = "";
+
+  /*************No modified area***********************/
+  var drawDataChart = new Array();
+  var chartArray = new Array();
+  var dataValue = new Array();
+
+  // chart class
+  function chartClass(itemNum, chartName, title) {
+    this.itemNum = itemNum;
+    this.chartName = chartName;
+    this.title = title;
+    this.updateDataHighChart = 0; // 0: dont update; 1: update
+    this.itemName = new Array();
+    this.dataValue = new Array();
+    this.interfaceID = new Array();
+    this.interfaceName = new Array();
+    this.instanceName = new Array();
+  }
+
+  // chart list class
+  function chartList(chartNum) {
+    this.chartNum = chartNum;
+    this.chartArray = new Array();
+
+    for (var i = 0; i < this.chartNum; i++) {
+      drawDataChart[i] = 0;
+    }
+  }
+
+  // Text class
+  function textClass(textID) {
+    this.textID = textID;
+    this.textName = "text" + String(this.textID);
+    this.interfaceID = 0;
+    this.interfaceName = "";
+    this.instanceName = "";
+    this.textValue = "";
+  }
+
+  // text list class
+  function textList(textNum) {
+    this.textNum = textNum;
+    this.textArray = new Array();
+  }
+
+  // Button class
+  function buttonClass(buttonID) {
+    this.buttID = buttonID;
+    this.buttName = "button" + String(this.buttID);
+    this.showText = "";
+    this.onClickEvent = "onClick" + String(this.burrID);
+    this.services = "";
+  }
+  // Button list class
+  function buttonList(buttonNum) {
+    this.buttonNum = buttonNum;
+    this.buttonArray = new Array();
+  }
+
+  // Chart and CahrtList define
+  var myChartList;
+  // Text and TextList define
+  var myTextList;
+  // Button and ButtonList define
+  var myButtonList;
+  // interfaces
+  var interfaces;
+
+  // Fetch get parameter
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]);
+    return null;
+  }
+
+  // button OnClick function
+  function buttOnClick(element) {
+    for (
+      var button_index = 0;
+      button_index < myButtonList.buttonNum;
+      button_index++
+    ) {
+      // get the clicked button
+      if (element.id == myButtonList.buttonArray[button_index].buttName) {
+        //element.value = element.value + "1";
+        var services = myButtonList.buttonArray[button_index].services;
+        $.get(
+          "<?php echo BASE_URL;?>/onelink/project_module/project_control.php",
+          {
+            type: "publishService",
+            appName: projectName,
+            serviceList: services
+          },
+          function(data) {
+            if (data.status == 200) {
+              //window.alert(data.serviceList);
+            }
+          },
+          "json"
+        );
+      }
+    }
+  }
+
+  /**************************************/
+
+  function drawBrokenLine(myChart, title, unit) {
+    // define series
+    series = new Array();
+    for (var count = 0; count < myChart.itemNum; count++) {
+      series[count] = {
+        name: myChart.itemName[count],
+        data: (function() {
+          // generate an array of random data
+          var data = [];
+          var time =
+            new Date(Date.parse(gDataDate.replace(/-/g, "/"))).getTime() - 1000;
+          var i;
+          for (i = -19; i <= 0; i++) {
+            data.push({
+              x: time + i * 1000,
+              y: 0
+            });
+          }
+          return data;
+        })()
+      };
+    }
+
+    $(document).ready(function() {
+      Highcharts.setOptions({
+        global: {
+          useUTC: false
+        }
+      });
+      var charts;
+      charts = new Highcharts.Chart({
+        chart: {
+          renderTo: myChart.chartName,
+          type: "line",
+          events: {
+            load: function() {
+              var seriesDataArray = new Array();
+              for (var i = 0; i < myChart.itemNum; i++) {
+                seriesDataArray[i] = this.series[i];
+              }
+              setInterval(function() {
+                var x = new Date(
+                  Date.parse(gDataDate.replace(/-/g, "/"))
+                ).getTime();
+                var y;
+                if (myChart.updateDataHighChart == 1) {
+                  myChart.updateDataHighChart = 0;
+                  for (var i = 0; i < myChart.itemNum; i++) {
+                    y = parseFloat(myChart.dataValue[i]);
+                    seriesDataArray[i].addPoint([x, y], true, true);
+                  }
+                }
+              }, 1000); //  set setInterval
+            } // load function
+          } // events
+        },
+        title: {
+          text: title
+        },
+        xAxis: {
+          type: "datetime",
+          tickPixelInterval: 150
+        },
+        yAxis: {
+          title: {
+            text: "Unit: " + unit
+          },
+          plotLines: [
+            {
+              value: 0,
+              width: 1
+            }
+          ]
+        },
+        tooltip: {
+          // 鼠标放在图形上的提示信息
+          formatter: function() {
+            return (
+              "<b>" +
+              this.series.name +
+              "</b><br/>" +
+              Highcharts.dateFormat("%Y-%m-%d %H:%M:%S", this.x) +
+              "<br/>" +
+              Highcharts.numberFormat(this.y, 2)
+            );
+          }
+        },
+        legend: {
+          align: "right", //程度标的目标地位
+          verticalAlign: "top", //垂直标的目标地位
+          x: 0, //间隔x轴的间隔
+          y: 100 //间隔Y轴的间隔
+          //enabled: false
+        },
+        exporting: {
+          enabled: false
+        },
+        series
+      }); //  charts = new Highcharts.Chart
+    }); // $(document).ready(function()
+  }
+  // Change scale of the UI
+  function changeScreen() {
+    widthCurrent = document.body.clientWidth;
+    scale = widthCurrent / widthBase;
+    if (myChartList) {
+      for (var count = 0; count < myChartList.chartNum; count++) {
+        var chartName = "dataChart" + String(count);
+        if (document.getElementById(chartName) != null) {
+          document.getElementById(chartName).style.width = "100%";
+          document.getElementById(chartName).style.height = "100%";
+        }
+      }
+    }
+  }
+
+  //获得所有interface最新的数据
+  function getAppRawData(dstr) {
+    if (document.body.clientWidth != widthCurrent) {
+      widthCurrent = document.body.clientWidth;
+      changeScreen();
+    }
+    if (dstr) {
+      $.get(
+        "<?php echo BASE_URL;?>/onelink/project_module/project_control.php",
+        { type: "rawData", dataSource: dstr },
+        function(data) {
+          var dataList = data.data;
+          var eventList = data.event;
+          /*data.data[interfaceID].time; 存储每一条数据的上传时间 
+                  data.currentDate;存储当前时间
+                  可由此判断数据是否是重复数据，或检测设备连接状态*/
+          if (dataList != "") {
+            if (myChartList) {
+              /*可以取消for循环，为每一个chart单独订制新的图表类型*/
+              for (
+                var chart_index = 0;
+                chart_index < myChartList.chartNum;
+                chart_index++
+              ) {
+                for (
+                  var item_index = 0;
+                  item_index < myChartList.chartArray[chart_index].itemNum;
+                  item_index++
+                ) {
+                  var interfaceID =
+                    myChartList.chartArray[chart_index].interfaceID[item_index];
+                  if (interfaceID in dataList) {
+                    myChartList.chartArray[chart_index].dataValue[item_index] =
+                      data.data[interfaceID].value;
+                  }
+                }
+                gDataDate = data.currentDate;
+                myChartList.chartArray[chart_index].updateDataHighChart = 1;
+                if (drawDataChart[chart_index] == 0) {
+                  $("#dataChartModule").show();
+                  drawBrokenLine(
+                    myChartList.chartArray[chart_index],
+                    "<b>" + myChartList.chartArray[chart_index].title + "</b>",
+                    "unit"
+                  );
+                  drawDataChart[chart_index] = 1;
+                }
+              }
+            }
+          }
+          if (dataList != "" || eventList != "") {
+            if (myTextList) {
+              for (
+                var text_index = 0;
+                text_index < myTextList.textNum;
+                text_index++
+              ) {
+                var interfaceID = myTextList.textArray[text_index].interfaceID;
+                if (interfaceID in eventList) {
+                  myTextList.textArray[text_index].textValue =
+                    eventList[interfaceID].value;
+                } else if (interfaceID in dataList) {
+                  myTextList.textArray[text_index].textValue =
+                    dataList[interfaceID].value;
+                }
+                document.getElementById(
+                  myTextList.textArray[text_index].textName
+                ).textContent = myTextList.textArray[text_index].textValue;
+                $("#dataTextModule").show();
+              }
+            }
+          }
+        },
+        "json"
+      );
+    }
+  }
+
+  if (getQueryString("appName") != null) {
+    mobileName = getQueryString("appName");
+    description = getQueryString("description");
+    projectName = getQueryString("project");
+    window.onload = function() {
+      $("#appName").text(mobileName);
+      $("#projectName").text(projectName);
+      $("#description").text(description);
+      $("#mobileModule").show();
+      $("#projectModule").show();
+      $("#descriptionModule").show();
+      if (getQueryString("author") != null) {
+        $("#author").text(getQueryString("author"));
+        $("#authorModule").show();
+      }
+      setInterval("getAppRawData(interfaces)", 1000); //数据更新时间，默认1s
+    };
+  }
+</script>
+<p id="mobileModule">
+  <font size="4px" color="white">App Name: </font
+  ><font size="4px" color="green" id="appName"></font>
+</p>
+<p id="projectModule">
+  <font size="4px" color="white">Project Name: </font
+  ><font size="4px" color="green" id="projectName"></font>
+</p>
+<p id="descriptionModule">
+  <font size="4px" color="white">Description: </font
+  ><font size="4px" color="green" id="description"></font>
+</p>
+<p id="authorModule">
+  <font size="4px" color="white">Author: </font
+  ><font size="4px" color="green" id="author"></font>
+</p>
+<!--
+  下面分别是Chart、Text和Button元素，不可删除，可以根据对应id及类型可在css中设置其样式
+-->
+<div id="dataChartModule"></div>
+<div id="dataTextModule"></div>
+<div id="buttonModule"></div>
