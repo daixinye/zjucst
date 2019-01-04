@@ -1,0 +1,12 @@
+{
+  "SERVER_NAME": "mqtt://tinylink.cn",
+  "CLIENT_NAME": "4968eadcaf373d29e98fc428529fc9615bf69bf7",
+  "PORT": 1883,
+
+  "SUB_TOPIC": "4968eadcaf373d29e98fc428529fc9615bf69bf7/service",
+  "PUB_TOPIC": "4968eadcaf373d29e98fc428529fc9615bf69bf7/data",
+  "PUB_EVENT_TOPIC": "4968eadcaf373d29e98fc428529fc9615bf69bf7/data",
+
+  "USERNAME": "qhh666888",
+  "PASSWORD": "qhh666888"
+}
