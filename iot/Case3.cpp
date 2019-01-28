@@ -1,135 +1,34 @@
-TinyApp SmartDoor
-{
-Interface:
-    TL_Event Ev({"Open", "Close"});
-    bool TurnOnLED();
-    bool TurnOffLED();
-Program:
-    double gyro_z[5] = {0.0};
-    int i = 0;
-    void setup()
-    {
-        TL_Connector.bind(TL_WiFi);
-        TL_WiFi.join("onelink", "onelinktest");
-    }
-    void loop()
-    {
-        TL_Gyro.read();
-        gyro_z[i] = TL_Gyro.data_z();
-        i++;
-        if (i == 5)
-        {
-            i = 0;
-        }
-        double sum = 0.0;
-        double average = 0.0;
-        for (int j = 0; j < 5; j++)
-        {
-            sum += gyro_z[j];
-        }
-        average = sum / 5;
-        if (average < -10 && sum < -150)
-        {
-            Ev.trigger("Open");
-            TurnOnLED();
-            TL_Time.delayMillis(1000);
-            for (int j = 0; j < 5; j++)
-            {
-                gyro_z[j] = 0;
-            }
-        }
-        else if (average > 10 && sum > 150)
-        {
-            Ev.trigger("Close");
-            TurnOffLED();
-            TL_Time.delayMillis(1000);
-            for (int j = 0; j < 5; j++)
-            {
-                gyro_z[j] = 0;
-            }
-        }
-        TL_Time.delayMillis(100);
-    }
-    bool TurnOnLED()
-    {
-        TL_Bulb.turnOn();
-        return true;
-    }
-    bool TurnOffLED()
-    {
-        TL_Bulb.turnOff();
-        return true;
-    }
-}
-SD;
+TL_MQTT mqtt;
 
-TinyApp SmartLED
-{
-Interface:
-    TL_Data LIGHT;
-    bool TurnOnLED();
-    bool TurnOffLED();
-Program:
-    void setup()
-    {
-        TL_Connector.bind(TL_WiFi);
-        TL_WiFi.join("onelink", "onelinktest");
-        LIGHT.bind(TL_Light);
-    }
-    bool TurnOnLED()
-    {
-        TL_Bulb.turnOn();
-        return true;
-    }
-    bool TurnOffLED()
-    {
-        TL_Bulb.turnOff();
-        return true;
-    }
-}
-SL1, SL2;
+char SERVER_NAME[] = "a1LFDI6H9u4.iot-as-mqtt.cn-shanghai.aliyuncs.com";
+char CLIENT_NAME[] = "FESA234FBDS24|securemode=3,signmethod=hmacsha1,timestamp=789|";
+char TOPIC_NAME[] = "/sys/a1LFDI6H9u4/tqVcRpUvu3YGdpc8fu52/thing/event/property/post";
+char USER_NAME[] = "tqVcRpUvu3YGdpc8fu52&a1LFDI6H9u4";
+char PASSWORD[] = "6a408e3e3207d246dff671fbc46528e27fb47c06";
+char SSID[] = "EmNets-301";
+char PASS[] = "eagle402";
+int PORT = 1883;
 
-TinyApp ControlPanel @Mobile
-{
-Program:
-    TL_Button B1, B2;
-    TL_Chart C1;
-    TL_Text T1;
-    void setup()
-    {
-        B1.setText("SL1 board LED Turn On!");
-        B2.setText("SL1 board Turn Off!");
-        C1.bindData(SL1::LIGHT);
-        T1.bindData(SD::Ev);
-        TL_UI.append({B1, B2, T1, C1});
-    }
-    void B1.isPressed()
-    {
-        SL1::TurnOnLED();
-    }
-    void B2.isPressed()
-    {
-        SL1::TurnOffLED();
-    }
+void setup() {
+    TL_WiFi.init();
+    mqtt = TL_WiFi.fetchMQTT();
+    mqtt.connect(SERVER_NAME, PORT, CLIENT_NAME, USER_NAME, PASSWORD);
+    TL_Serial.begin(9600);
 }
-CP;
 
-Policy IfNeedLED
-{
-Rule:
-    If(SD::Ev.isTriggered("Open") && SL1::LIGHT.last() < 100)
-    {
-        For(L In{SL1, SL2})
-        {
-            L::TurnOnLED();
-        }
-    }
-    If(SD::Ev.isTriggered("Close") && SL1::LIGHT.last() > 100)
-    {
-        For(L In{SL1, SL2})
-        {
-            L::TurnOffLED();
-        }
-    }
+void loop() {
+    TL_Light.read();
+    TL_Temperature.read();
+    String data = "{\"id\" : \"789\", \"version\":\"1.0\", \"params\" : {";
+    data += "\"LightLuxValue\":";
+    data += TL_Light.data();
+    data += ",\"CurrentTemperature\":";
+    data += TL_Temperature.data();
+    data += "},\"method\":\"thing.event.property.post\"}";
+    TL_Serial.println(data);
+    char buf[1000];
+    data.toCharArray( buf,1000 );
+    int res = mqtt.publish(TOPIC_NAME, buf, strlen(buf),0);
+    TL_Serial.println(res);
+    TL_Time.delayMillis(1000);
 }
-INL;
