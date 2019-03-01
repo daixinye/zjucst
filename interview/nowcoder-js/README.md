@@ -4,5 +4,5 @@
 - [ ] 创建对象的方法
 
 ## Ref
-[https://www.nowcoder.com/ta/js-assessment?page=1](https://www.nowcoder.com/ta/js-assessment?page=1)
-[https://github.com/rmurphey/js_assessment](https://github.com/rmurphey/js_assessment)
+- [https://www.nowcoder.com/ta/js-assessment?page=1](https://www.nowcoder.com/ta/js-assessment?page=1)
+- [https://github.com/rmurphey/js_assessment](https://github.com/rmurphey/js_assessment)
