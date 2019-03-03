@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ $1 -o ./output
+g++ ./source/$1.cpp -o ./output
 ./output
