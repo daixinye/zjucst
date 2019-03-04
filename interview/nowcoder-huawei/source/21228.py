@@ -1,7 +1,7 @@
 import sys
 
-def main(arg1):
-    print(arg1)
+def main(arg):
+    print(eval(arg))
 
 while True:
     try:
