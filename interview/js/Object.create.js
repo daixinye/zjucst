@@ -1,0 +1,7 @@
+const test = Object.create({a:1,b:2},{c:3})
+console.log(test)
+console.log(test.a)
+console.log('a' in test)
+console.log(test.hasOwnProperty('a'))
+console.log(Object.keys(test))
+console.log(Object.getOwnPropertyNames(test))
