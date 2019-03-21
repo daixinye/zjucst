@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>1-introduction</title>
+  </head>
+  <body>
+    <article id="app">
+      <section>
+        <input type="text" v-model="input" />
+        <button v-on:click="add">add todo</button>
+      </section>
+      <section>
+        <p v-if="hasTodos">you have something todo</p>
+      </section>
+      <ol>
+        <todo-item
+          v-for="todo in todos"
+          v-bind:todo="todo.content"
+          v-bind:key="todo.id"
+        ></todo-item>
+      </ol>
+    </article>
+
+    <script>
+      Vue.component("todo-item", {
+        props: ["todo"],
+        template: "<li> {{todo}} </li>"
+      });
+      var app = new Vue({
+        el: "#app",
+        data: {
+          input: "",
+          todos: [],
+          hasTodos: false
+        },
+        methods: {
+          add: function() {
+            this.todos.push({
+              id: this.todos.length,
+              content: this.input
+            });
+            this.input = "";
+            this.hasTodos = true;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

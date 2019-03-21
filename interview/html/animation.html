@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>animation</title>
+    <style>
+      .little-square {
+        display: inline-block;
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 实现一个从 0 运动到 100px 的动画 -->
+    <!-- 1. CSS3 animation keyframs -->
+    <!-- 2. CSS3 transation -->
+    <!-- 3. setInterval -->
+    <section>
+
+    </section>
+    <!-- 4. requestAnimationFrame -->
+    <section>
+      <p>4. requestAnimationFrame</p>
+      <span class="little-square" id="case-4"></span>
+      <script>
+        void function() {
+          var el = document.getElementById("case-4");
+          var max = 100,
+            curr = 0;
+          var animation = function() {
+            el.style.marginLeft = curr + "px";
+            curr += 1;
+            if (curr < 200) {
+              requestAnimationFrame(animation);
+            }
+          };
+        //   requestAnimationFrame(animation);
+        animation()
+        }();
+      </script>
+    </section>
+  </body>
+</html>
